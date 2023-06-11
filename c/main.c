@@ -6,7 +6,7 @@ int main(int argc, char *argv[]) {
 	(void)argc;
 	(void)argv;
 
-	printf("%c\n", rotate_char('a', -13));
+	printf("%c\n", rotate_char('a', 13));
 	/*
 	if (argc == 3) {
 		printf("%s\n", encipher(argv[1], argv[2]));

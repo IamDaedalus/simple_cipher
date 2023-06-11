@@ -3,7 +3,7 @@
 
 #include <stdbool.h>
 
-#define ASCII_LOWER 96
+#define ASCII_LOWER 97
 #define ALPHA_COUNT 26
 
 int sum_of_letter_nums(const char *);
