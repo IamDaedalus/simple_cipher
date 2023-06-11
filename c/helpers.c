@@ -49,29 +49,26 @@ char *str_to_lower(char *str) {
  * rotate_char - rotates a character by the given rotation
  * @c: the character to rotate
  * @rot: the rotation value
- * Return: the rotated character in the alphabet
+ * Return: the rotated character in the ALPHAbet
  */
 char rotate_char(char c, int rot) {
-	int alpha = 26;
-	int ascii = 96;
-
 	if (is_letter(c)) {
 		if (rot < 0)
-			return rotate_char(c, rot + alpha);
+			return rotate_char(c, rot + ALPHA_COUNT);
 
-		return ((char_to_num(c) + rot) % alpha) + ascii;
+		return ((char_to_num(c) + rot) % ALPHA_COUNT) + ASCII_LOWER;
 	}
 
 	return c;
 }
 
 /**
- * char_to_num - returns the numeric value of the letter in the alphabet
+ * char_to_num - returns the numeric value of the letter in the ALPHAbet
  * @ch: the input character
  * Return: the numeric value of the letter
  */
 int char_to_num(const char ch) {
-	return ch - 96;
+	return ch - ASCII_LOWER;
 }
 
 /**

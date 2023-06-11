@@ -3,6 +3,9 @@
 
 #include <stdbool.h>
 
+#define ASCII_LOWER 96
+#define ALPHA_COUNT 26
+
 int sum_of_letter_nums(const char *);
 int char_to_num(const char);
 bool is_letter(const char);

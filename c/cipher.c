@@ -37,7 +37,8 @@ char *encipher(const char *key, const char *input) {
 
 char *decipher(const char *key, const char *input) {
 	int key_len, input_len;
-	int key_num, input_num, offset;
+	int key_num, input_num, offset, key_and_input;
+	int rr, mm;
 	char *result;
 	int i;
 
@@ -56,7 +57,11 @@ char *decipher(const char *key, const char *input) {
 
 	key_num = sum_of_letter_nums(key);
 	input_num = sum_of_letter_nums(input);
-	offset = key_len * (key_num + input_num);
+	key_and_input = (key_num + input_num) * key_len;
+
+	rr = key_num - input_num;
+	mm = key_and_input - rr;
+	offset = (mm - ((mm % 26) * 26)) + 2;
 
 	for (i = 0; i < input_len; i++) {
 		result[i] = rotate_char(input[i], -offset);
