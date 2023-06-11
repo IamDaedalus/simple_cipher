@@ -24,7 +24,10 @@ int sum_of_letter_nums(const char *str) {
 	return result;
 }
 
-/**
+/*
+ * ENDED UP NOT USING THIS BUT WE MIGHT COME BACK TO is_letter
+ *
+ *
  * str_to_lower - converts a string to lowercase
  * @str: the input string
  * Return: the lowercase version of the string
@@ -49,10 +52,17 @@ char *str_to_lower(char *str) {
  * Return: the rotated character in the alphabet
  */
 char rotate_char(char c, int rot) {
-	if (rot < 0)
-		return rotate_char(c, rot + 26);
+	int alpha = 26;
+	int ascii = 96;
 
-	return ((char_to_num(c) + rot) % 26) + 96;
+	if (is_letter(c)) {
+		if (rot < 0)
+			return rotate_char(c, rot + alpha);
+
+		return ((char_to_num(c) + rot) % alpha) + ascii;
+	}
+
+	return c;
 }
 
 /**
@@ -72,4 +82,3 @@ int char_to_num(const char ch) {
 bool is_letter(const char in) {
 	return (in >= 'a' && in <= 'z');
 }
-

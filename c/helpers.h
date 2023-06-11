@@ -9,6 +9,6 @@ bool is_letter(const char);
 char rotate_char(char, int);
 char *str_to_lower(char *);
 char *encipher(const char *, const char *);
-char *decipher(char *, char *);
+char *decipher(const char *, const char *);
 
 #endif
