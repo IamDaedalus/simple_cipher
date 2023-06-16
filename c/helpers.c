@@ -1,7 +1,8 @@
 #include "helpers.h"
-#include <ctype.h>
 #include <stdbool.h>
-#include <stdio.h>
+#include <ctype.h>
+#include <string.h>
+#include <stdlib.h>
 
 /**
  * sum_of_letter_nums - takes a string, converts each letter to a number, and
@@ -24,26 +25,25 @@ int sum_of_letter_nums(const char *str) {
 	return result;
 }
 
-/*
- * ENDED UP NOT USING THIS BUT WE MIGHT COME BACK TO is_letter
- *
- *
+/**
  * str_to_lower - converts a string to lowercase
  * @str: the input string
  * Return: the lowercase version of the string
- *
+ */
 char *str_to_lower(char *str) {
-	char *s;
+	int i;
+	char *s = str ? malloc(sizeof(char) * strlen(str) + 1) : NULL;
 
-	if (str == NULL)
+	if (!s)
 		return NULL;
 
-	for (s = str; *s != '\0'; s++)
-		*s = tolower(*s);
+	for (i = 0; str[i] != '\0'; i++)
+		s[i] = tolower(str[i]);
 
-	return str;
+	s[i] = '\0';
+
+	return s;
 }
-*/
 
 /**
  * rotate_char - rotates a character by the given rotation
@@ -52,15 +52,18 @@ char *str_to_lower(char *str) {
  * Return: the rotated character in the ALPHAbet
  */
 char rotate_char(char c, int rot) {
-	if (is_letter(c)) {
-		if (rot < 0)
-			return rotate_char(c, rot + ALPHA_COUNT);
+	int rot_char;
 
-		return ((char_to_num(c) + rot) % ALPHA_COUNT) + ASCII_LOWER;
-	}
+	if (!isalpha(c))
+		return c;
 
-	return c;
+	rot_char = (c - ASCII_LOWER + rot) % ALPHA_COUNT;
+	if (rot_char < 0)
+		rot_char += ALPHA_COUNT;
+
+	return rot_char + ASCII_LOWER;
 }
+
 
 /**
  * char_to_num - returns the numeric value of the letter in the ALPHAbet
@@ -68,7 +71,10 @@ char rotate_char(char c, int rot) {
  * Return: the numeric value of the letter
  */
 int char_to_num(const char ch) {
-	return ch - ASCII_LOWER;
+	if (!is_letter(ch))
+		return ch;
+
+	return ch - 'a' + 1;
 }
 
 /**
